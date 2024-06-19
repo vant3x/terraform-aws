@@ -9,3 +9,8 @@ variable "secret_key" {
     type = string
     sensitive = true
 }
+
+variable "service_names" {
+    description = "Name of the EC2 repositories"
+    type = set(string)
+}
