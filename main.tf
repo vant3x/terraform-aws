@@ -21,7 +21,8 @@ resource "aws_instance" "exampleterra2" {
     for_each = var.service_names
     ami = "ami-011899242bb902164" #Ubuntu 20.04 LTS
     instance_type = "t2.micro"
-    subnet_id = "subnet-09df844648cd5511f"
+    subnet_id = module.vpc.public_subnets[0]
+    vpc_security_group_ids = [module.terraform-sg.security_group_id]
     tags = {
         ExtraTag = local.extra_tag
         Name = "EC2-${each.key}"
